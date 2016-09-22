@@ -6,6 +6,13 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+env:
+  - COMMONMARK_VERSION=0.11.*
+  - COMMONMARK_VERSION=0.12.*
+  - COMMONMARK_VERSION=0.13.*
+  - COMMONMARK_VERSION=0.14.*
+  - COMMONMARK_VERSION=0.15.*
+
 matrix:
   include:
     - php: 5.5
@@ -17,6 +24,7 @@ matrix:
 
 before_script:
   - composer self-update
+  - if [ "$COMMONMARK_VERSION" != "" ]; then composer require "league/commonmark:${COMMONMARK_VERSION}" --no-update; fi;
   - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 
 script:
