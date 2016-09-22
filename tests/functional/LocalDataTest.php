@@ -48,6 +48,10 @@ class LocalDataTest extends \PHPUnit_Framework_TestCase
      */
     public function testTwigRenderer($markdown, $html, $testName)
     {
+        if (!class_exists(Webuni\CommonMark\TwigRenderer\CommonMarkTwigExtension::class)) {
+            $this->markTestSkipped("CommonMarkTwigExtension isn't loaded, we're probably running a version of commonmark that doesn't support it.");
+        }
+
         $loader = CommonMarkTwigExtension::createTwigLoader();
 
         $ref = new \ReflectionClass('Webuni\CommonMark\TableExtension\TableExtension');
