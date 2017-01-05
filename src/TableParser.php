@@ -114,6 +114,11 @@ class TableParser extends AbstractBlockParser
 
         // If we have a single match we might be using a single-column table
         if (!is_array($cells[0])) {
+            // If this isn't a single-column table, this is an invalid row
+            if (1 !== count($columns)) {
+                return;
+            }
+
             // Single-column table cells that have [body] content must be prefixed with | to not be treated as captions
             if (null !== $this->parseCaption($line)) {
                 return;
