@@ -107,8 +107,15 @@ class TableParser extends AbstractBlockParser
     private function parseRow($line, array $columns, $type = TableCell::TYPE_BODY)
     {
         $cells = RegexHelper::matchAll(self::REGEXP_CELLS, $line);
-        if (null === $cells || !is_array($cells[0])) {
+
+        if (null === $cells) {
             return;
+        }
+
+        // $cells[0] is going to be either an array of matches or a single match
+        // Convert single match to array of matches to allow single-column tables
+        if (!is_array($cells[0])) {
+            $cells = [$cells];
         }
 
         $row = new TableRow();
