@@ -112,9 +112,14 @@ class TableParser extends AbstractBlockParser
             return;
         }
 
-        // $cells[0] is going to be either an array of matches or a single match
-        // Convert single match to array of matches to allow single-column tables
+        // If we have a single match we might be using a single-column table
         if (!is_array($cells[0])) {
+            // Single-column table cells that have [body] content must be prefixed with | to not be treated as captions 
+            if (null !== $this->parseCaption($line)) {
+                return;
+            }
+
+            // Fake single match as array of matches for the code below
             $cells = [$cells];
         }
 
