@@ -31,7 +31,12 @@ class TableCellRenderer implements BlockRendererInterface
         }
 
         if ($block->align) {
-            $attrs['align'] = $block->align;
+            error_log($block->type . "done\n", 3, "/home/tewi/error.log");
+            if ($block->type == TableCell::TYPE_HEAD) {
+                $attrs['style'] = "text-align: $block->align";
+            } else {
+                $attrs['align'] = $block->align;
+            }
         }
 
         return new HtmlElement($block->type, $attrs, $htmlRenderer->renderInlines($block->children()));
