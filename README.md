@@ -6,6 +6,12 @@ CommonMark Table Extension
 [![Code Quality](https://img.shields.io/scrutinizer/g/thephpleague/commonmark-ext-table.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/commonmark-ext-table/code-structure)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/thephpleague/commonmark-ext-table.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/commonmark-ext-table)
 
+## DEPRECATED
+
+**This extension has been deprecated**.  All of its functionality now exists in [`league/commonmark`](https://github.com/thephpleague/commonmark) 1.3+ under the `League\CommonMark\Extension\Table` namespace, so you should upgrade to that version and use that bundled extension instead of this one.
+
+## Overview
+
 The Table extension adds the ability to create tables in CommonMark documents.
 
 Installation
